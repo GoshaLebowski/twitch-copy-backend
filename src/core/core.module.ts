@@ -9,6 +9,7 @@ import { IS_DEV_ENV } from '@/src/shared/utils/is-dev.util'
 
 import { PrismaModule } from './prisma/prisma.module'
 import { RedisModule } from './redis/redis.module'
+import { SessionModule } from '@/src/modules/auth/session/session.module'
 
 @Module({
     imports: [
@@ -24,7 +25,8 @@ import { RedisModule } from './redis/redis.module'
         }),
         PrismaModule,
         RedisModule,
-        AccountModule
+        AccountModule,
+        SessionModule
     ]
 })
 export class CoreModule {}
