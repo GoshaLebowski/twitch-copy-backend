@@ -9,9 +9,6 @@ export class UserModel {
     email: string
 
     @Field(() => String)
-    password: string
-
-    @Field(() => String)
     username: string
 
     @Field(() => String)
