@@ -38,7 +38,7 @@ export function VerificationTemplate({ domain, token }: VerificationTemplateProp
                                 href="mailto:teststreamleb@teststreamcourse.ru"
                                 className="text-[#18b9ae] underline"
                             >
-                                help@teastream.ru
+                                teststreamleb@teststreamcourse.ru
                             </Link>
                         </Text>
                     </Section>
