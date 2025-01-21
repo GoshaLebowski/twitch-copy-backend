@@ -34,6 +34,12 @@ export class UserModel implements User {
     @Field(() => Boolean)
     isEmailVerified: boolean
 
+    @Field(() => Boolean)
+    isTotpEnabled: boolean
+
+    @Field(() => String, { nullable: true })
+    totpSecret: string
+
     @Field(() => Date)
     createdAt: Date
 
