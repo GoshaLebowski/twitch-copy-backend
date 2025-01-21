@@ -1,13 +1,12 @@
 import { MailerService } from '@nestjs-modules/mailer';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
-import { render } from '@react-email/components';
+import { render } from '@react-email/components'
 
-
-
-import { PasswordRecoveryTemplate } from '@/src/modules/libs/mail/templates/password-recovery.template';
-import { VerificationTemplate } from '@/src/modules/libs/mail/templates/verification.template'
-import type { SessionMetadata } from '@/src/shared/types/session-metadata.types'
+import { DeactivateTemplate } from '@/src/modules/libs/mail/templates/deactivate.template'
+import { PasswordRecoveryTemplate } from '@/src/modules/libs/mail/templates/password-recovery.template'
+import { VerificationTemplate } from '@/src/modules/libs/mail/templates/verification.template';
+import type { SessionMetadata } from '@/src/shared/types/session-metadata.types';
 
 
 
@@ -38,6 +37,16 @@ export class MailService {
         )
 
         return this.sendMail(email, 'Сброс пароля', html)
+    }
+
+    public async sendDeactivateToken(
+        email: string,
+        token: string,
+        metadata: SessionMetadata
+    ) {
+        const html = await render(DeactivateTemplate({ token, metadata }))
+
+        return this.sendMail(email, 'Деактивация аккаунта', html)
     }
 
     private sendMail(email: string, subject: string, html: string) {
