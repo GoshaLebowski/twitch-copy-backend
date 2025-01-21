@@ -16,6 +16,7 @@ import { IS_DEV_ENV } from '@/src/shared/utils/is-dev.util'
 import { PrismaModule } from './prisma/prisma.module'
 import { RedisModule } from './redis/redis.module'
 import { TotpModule } from '@/src/modules/auth/totp/totp.module'
+import { DeactivateModule } from '@/src/modules/auth/deactivate/deactivate.module'
 
 
 
@@ -41,6 +42,7 @@ import { TotpModule } from '@/src/modules/auth/totp/totp.module'
         MailModule,
         PasswordRecoveryModule,
         TotpModule,
+        DeactivateModule,
     ]
 })
 export class CoreModule {}
