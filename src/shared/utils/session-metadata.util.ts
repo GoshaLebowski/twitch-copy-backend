@@ -10,7 +10,7 @@ import DeviceDetector = require('device-detector-js')
 
 countries.registerLocale(require('i18n-iso-countries/langs/en.json'))
 
-export function getSessionMetaData(
+export function getSessionMetadata(
     req: Request,
     userAgent: string
 ): SessionMetadata {

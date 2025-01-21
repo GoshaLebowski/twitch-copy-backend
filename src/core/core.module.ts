@@ -11,12 +11,11 @@ import { PasswordRecoveryModule } from '@/src/modules/auth/password-recovery/pas
 import { SessionModule } from '@/src/modules/auth/session/session.module';
 import { VerificationModule } from '@/src/modules/auth/verification/verification.module';
 import { MailModule } from '@/src/modules/libs/mail/mail.module';
-import { IS_DEV_ENV } from '@/src/shared/utils/is-dev.util';
+import { IS_DEV_ENV } from '@/src/shared/utils/is-dev.util'
 
-
-
-import { PrismaModule } from './prisma/prisma.module';
-import { RedisModule } from './redis/redis.module';
+import { PrismaModule } from './prisma/prisma.module'
+import { RedisModule } from './redis/redis.module'
+import { TotpModule } from '@/src/modules/auth/totp/totp.module'
 
 
 
@@ -40,7 +39,8 @@ import { RedisModule } from './redis/redis.module';
         SessionModule,
         VerificationModule,
         MailModule,
-        PasswordRecoveryModule
+        PasswordRecoveryModule,
+        TotpModule,
     ]
 })
 export class CoreModule {}

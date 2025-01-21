@@ -10,7 +10,7 @@ import { PrismaService } from '@/src/core/prisma/prisma.service'
 import { VerificationInput } from '@/src/modules/auth/verification/inputs/verification.input'
 import { MailService } from '@/src/modules/libs/mail/mail.service'
 import { generateToken } from '@/src/shared/utils/generate-token.util'
-import { getSessionMetaData } from '@/src/shared/utils/session-metadata.util'
+import { getSessionMetadata } from '@/src/shared/utils/session-metadata.util'
 import { saveSession } from '@/src/shared/utils/session.util'
 
 @Injectable()
@@ -56,7 +56,7 @@ export class VerificationService {
             }
         })
 
-        const metadata = getSessionMetaData(req, userAgent)
+        const metadata = getSessionMetadata(req, userAgent)
 
         return saveSession(req, user, metadata)
     }

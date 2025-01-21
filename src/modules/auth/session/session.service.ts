@@ -1,20 +1,21 @@
-import {
-    BadRequestException,
-    ConflictException,
-    Injectable,
-    NotFoundException,
-    UnauthorizedException
-} from '@nestjs/common'
-import { ConfigService } from '@nestjs/config'
-import { verify } from 'argon2'
-import type { Request } from 'express'
+import { BadRequestException, ConflictException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { verify } from 'argon2';
+import type { Request } from 'express';
+import { TOTP } from 'otpauth';
 
-import { PrismaService } from '@/src/core/prisma/prisma.service'
-import { RedisService } from '@/src/core/redis/redis.service'
-import { LoginUserInput } from '@/src/modules/auth/session/inputs/login-user.input'
-import { VerificationService } from '@/src/modules/auth/verification/verification.service'
-import { getSessionMetaData } from '@/src/shared/utils/session-metadata.util'
-import { destroySession, saveSession } from '@/src/shared/utils/session.util'
+
+
+import { PrismaService } from '@/src/core/prisma/prisma.service';
+import { RedisService } from '@/src/core/redis/redis.service';
+import { LoginInput } from '@/src/modules/auth/session/inputs/login.input';
+import { VerificationService } from '@/src/modules/auth/verification/verification.service';
+import { getSessionMetadata } from '@/src/shared/utils/session-metadata.util';
+import { destroySession, saveSession } from '@/src/shared/utils/session.util';
+
+
+
+
 
 @Injectable()
 export class SessionService {
@@ -71,8 +72,8 @@ export class SessionService {
         }
     }
 
-    public async login(req: Request, input: LoginUserInput, userAgent: string) {
-        const { login, password } = input
+    public async login(req: Request, input: LoginInput, userAgent: string) {
+        const { login, password, pin } = input
 
         const user = await this.prismaService.user.findFirst({
             where: {
@@ -83,11 +84,15 @@ export class SessionService {
             }
         })
 
-        if (!user) throw new NotFoundException('Пользователь не найден')
+        if (!user) {
+            throw new NotFoundException('Пользователь не найден')
+        }
 
         const isValidPassword = await verify(user.password, password)
 
-        if (!isValidPassword) throw new UnauthorizedException('Неверный пароль')
+        if (!isValidPassword) {
+            throw new UnauthorizedException('Неверный пароль')
+        }
 
         if (!user.isEmailVerified) {
             await this.verificationService.sendVerificationToken(user)
@@ -97,7 +102,29 @@ export class SessionService {
             )
         }
 
-        const metadata = getSessionMetaData(req, userAgent)
+        if (user.isTotpEnabled) {
+            if (!pin) {
+                return {
+                    message: 'Необходим код для завершения авторизации'
+                }
+            }
+
+            const totp = new TOTP({
+                issuer: 'TestStream',
+                label: `${user.email}`,
+                algorithm: 'SHA1',
+                digits: 6,
+                secret: user.totpSecret
+            })
+
+            const delta = totp.validate({ token: pin })
+
+            if (delta === null) {
+                throw new BadRequestException('Неверный код')
+            }
+        }
+
+        const metadata = getSessionMetadata(req, userAgent)
 
         return saveSession(req, user, metadata)
     }

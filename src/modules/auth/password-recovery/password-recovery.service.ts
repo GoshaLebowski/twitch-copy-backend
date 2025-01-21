@@ -12,7 +12,7 @@ import { NewPasswordInput } from '@/src/modules/auth/password-recovery/inputs/ne
 import { ResetPasswordInput } from '@/src/modules/auth/password-recovery/inputs/reset-password.input'
 import { MailService } from '@/src/modules/libs/mail/mail.service'
 import { generateToken } from '@/src/shared/utils/generate-token.util'
-import { getSessionMetaData } from '@/src/shared/utils/session-metadata.util'
+import { getSessionMetadata } from '@/src/shared/utils/session-metadata.util'
 
 @Injectable()
 export class PasswordRecoveryService {
@@ -45,7 +45,7 @@ export class PasswordRecoveryService {
             true
         )
 
-        const metadata = getSessionMetaData(req, userAgent)
+        const metadata = getSessionMetadata(req, userAgent)
 
         await this.mailService.sendPasswordResetToken(
             user.email,
