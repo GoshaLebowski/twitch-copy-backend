@@ -59,7 +59,7 @@ type Mutation {
   newPassword(data: NewPasswordInput!): Boolean!
   removeSession(id: String!): Boolean!
   resetPassword(data: ResetPasswordInput!): Boolean!
-  verifyAccount(data: VerificationInput!): UserModel!
+  verifyAccount(data: VerificationInput!): AuthModel!
 }
 
 input NewPasswordInput {

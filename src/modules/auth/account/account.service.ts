@@ -40,7 +40,7 @@ export class AccountService {
         })
 
         if (isUserEmailExists)
-            throw new ConflictException('Это почта уже занят')
+            throw new ConflictException('Это почта уже занята')
 
         const user = await this.prismaService.user.create({
             data: {
