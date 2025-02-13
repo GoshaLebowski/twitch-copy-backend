@@ -48,6 +48,4 @@ export class AccountResolver {
     ) {
         return this.accountService.changePassword(user, input)
     }
-
-
 }
