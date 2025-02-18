@@ -14,6 +14,7 @@ import { TotpModule } from '@/src/modules/auth/totp/totp.module';
 import { VerificationModule } from '@/src/modules/auth/verification/verification.module';
 import { CronModule } from '@/src/modules/cron/cron.module';
 import { MailModule } from '@/src/modules/libs/mail/mail.module';
+import { StorageModule } from '@/src/modules/libs/storage/storage.module';
 import { IS_DEV_ENV } from '@/src/shared/utils/is-dev.util';
 
 
@@ -46,7 +47,8 @@ import { RedisModule } from './redis/redis.module';
         CronModule,
         PasswordRecoveryModule,
         TotpModule,
-        DeactivateModule
+        DeactivateModule,
+        StorageModule
     ]
 })
 export class CoreModule {}
