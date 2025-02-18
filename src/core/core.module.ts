@@ -21,6 +21,7 @@ import { IS_DEV_ENV } from '@/src/shared/utils/is-dev.util';
 
 import { PrismaModule } from './prisma/prisma.module';
 import { RedisModule } from './redis/redis.module';
+import { ProfileModule } from '@/src/modules/auth/profile/profile.module'
 
 
 
@@ -42,6 +43,7 @@ import { RedisModule } from './redis/redis.module';
         RedisModule,
         AccountModule,
         SessionModule,
+        ProfileModule,
         VerificationModule,
         MailModule,
         CronModule,
