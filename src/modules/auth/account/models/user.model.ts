@@ -3,6 +3,10 @@ import type { User } from '@prisma/generated';
 
 
 
+import { SocialLinkModel } from '@/src/modules/auth/profile/models/social-link.model';
+
+
+
 
 
 @ObjectType()
@@ -45,6 +49,9 @@ export class UserModel implements User {
 
     @Field(() => Date, { nullable: true })
     deactivateAt: Date
+
+    @Field(() => [SocialLinkModel])
+    socialLinks: SocialLinkModel[]
 
     @Field(() => Date)
     createdAt: Date

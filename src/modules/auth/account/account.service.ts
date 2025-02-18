@@ -25,6 +25,9 @@ export class AccountService {
         return this.prismaService.user.findUnique({
             where: {
                 id
+            },
+            include: {
+                socialLinks: true
             }
         })
     }
