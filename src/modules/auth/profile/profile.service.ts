@@ -147,7 +147,7 @@ export class ProfileService {
                 title,
                 url,
                 position: newPosition,
-                User: {
+                user: {
                     connect: {
                         id: user.id
                     }

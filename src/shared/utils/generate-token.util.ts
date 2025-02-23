@@ -24,7 +24,7 @@ export async function generateToken(
     const existingToken = await prismaService.token.findFirst({
         where: {
             type,
-            User: {
+            user: {
                 id: user.id
             }
         }
@@ -38,14 +38,14 @@ export async function generateToken(
             token,
             expiresIn,
             type,
-            User: {
+            user: {
                 connect: {
                     id: user.id
                 }
             }
         },
         include: {
-            User: true
+            user: true
         }
     })
 }
