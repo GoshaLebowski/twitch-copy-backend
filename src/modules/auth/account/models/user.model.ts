@@ -4,6 +4,7 @@ import type { User } from '@prisma/generated';
 
 
 import { SocialLinkModel } from '@/src/modules/auth/profile/models/social-link.model';
+import { StreamModel } from '@/src/modules/stream/models/stream.model';
 
 
 
@@ -52,6 +53,9 @@ export class UserModel implements User {
 
     @Field(() => [SocialLinkModel])
     socialLinks: SocialLinkModel[]
+
+    @Field(() => StreamModel)
+    stream: StreamModel
 
     @Field(() => Date)
     createdAt: Date
