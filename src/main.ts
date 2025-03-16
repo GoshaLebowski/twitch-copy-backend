@@ -1,15 +1,24 @@
-import { ValidationPipe } from '@nestjs/common'
-import { ConfigService } from '@nestjs/config'
-import { NestFactory } from '@nestjs/core'
-import { RedisStore } from 'connect-redis'
-import * as cookieParser from 'cookie-parser'
-import * as session from 'express-session'
-import * as graphqlUploadExpress from 'graphql-upload/graphqlUploadExpress.js'
-import { RedisService } from '@/src/core/redis/redis.service'
-import { ms, type StringValue } from '@/src/shared/utils/ms.util'
-import { parseBoolean } from '@/src/shared/utils/parse-boolean.util'
+import { ValidationPipe } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import { NestFactory } from '@nestjs/core';
+import { RedisStore } from 'connect-redis';
+import * as cookieParser from 'cookie-parser';
+import * as session from 'express-session';
+import * as graphqlUploadExpress from 'graphql-upload/graphqlUploadExpress.js';
 
-import { CoreModule } from './core/core.module'
+
+
+import { RedisService } from '@/src/core/redis/redis.service';
+import { ms, type StringValue } from '@/src/shared/utils/ms.util';
+import { parseBoolean } from '@/src/shared/utils/parse-boolean.util';
+
+
+
+import { CoreModule } from './core/core.module';
+
+
+
+
 
 async function bootstrap() {
     const app = await NestFactory.create(CoreModule)

@@ -18,14 +18,15 @@ import { CronModule } from '@/src/modules/cron/cron.module';
 import { LivekitModule } from '@/src/modules/libs/livekit/livekit.module';
 import { MailModule } from '@/src/modules/libs/mail/mail.module';
 import { StorageModule } from '@/src/modules/libs/storage/storage.module';
+import { IngressModule } from '@/src/modules/stream/ingress/ingress.module';
 import { StreamModule } from '@/src/modules/stream/stream.module';
+import { WebhookModule } from '@/src/modules/webhook/webhook.module';
 import { IS_DEV_ENV } from '@/src/shared/utils/is-dev.util';
 
 
 
 import { PrismaModule } from './prisma/prisma.module';
 import { RedisModule } from './redis/redis.module';
-import { IngressModule } from '@/src/modules/stream/ingress/ingress.module'
 
 
 
@@ -62,6 +63,7 @@ import { IngressModule } from '@/src/modules/stream/ingress/ingress.module'
         StorageModule,
         StreamModule,
         IngressModule,
+        WebhookModule
     ]
 })
 export class CoreModule {}
