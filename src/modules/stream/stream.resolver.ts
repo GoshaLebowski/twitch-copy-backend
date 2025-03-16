@@ -1,17 +1,26 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
-import type { User } from '@prisma/generated'
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import type { User } from '@prisma/generated';
+import * as GraphQLUpload from 'graphql-upload/GraphQLUpload.js';
+import * as Upload from 'graphql-upload/Upload.js';
 
-import * as GraphQLUpload from 'graphql-upload/GraphQLUpload.js'
-import * as Upload from 'graphql-upload/Upload.js'
 
-import { ChangeStreamInfoInput } from '@/src/modules/stream/inputs/change-stream-info.input'
-import { FiltersInput } from '@/src/modules/stream/inputs/filters.input'
-import { StreamModel } from '@/src/modules/stream/models/stream.model'
-import { Authorization } from '@/src/shared/decorators/auth.decorator'
-import { Authorized } from '@/src/shared/decorators/authorized.decorator'
 
-import { StreamService } from './stream.service'
-import { FileValidationPipe } from '@/src/shared/pipes/file-validation.pipe'
+import { ChangeStreamInfoInput } from '@/src/modules/stream/inputs/change-stream-info.input';
+import { FiltersInput } from '@/src/modules/stream/inputs/filters.input';
+import { GenerateStreamTokenInput } from '@/src/modules/stream/inputs/generate-stream-token.input';
+import { GenerateTokenModel } from '@/src/modules/stream/models/generate-token.model';
+import { StreamModel } from '@/src/modules/stream/models/stream.model';
+import { Authorization } from '@/src/shared/decorators/auth.decorator';
+import { Authorized } from '@/src/shared/decorators/authorized.decorator';
+import { FileValidationPipe } from '@/src/shared/pipes/file-validation.pipe';
+
+
+
+import { StreamService } from './stream.service';
+
+
+
+
 
 @Resolver('Stream')
 export class StreamResolver {
@@ -41,7 +50,7 @@ export class StreamResolver {
     public async changeThumbnail(
         @Authorized() user: User,
         @Args('thumbnail', { type: () => GraphQLUpload }, FileValidationPipe)
-            thumbnail: Upload
+        thumbnail: Upload
     ) {
         return this.streamService.changeThumbnail(user, thumbnail)
     }
@@ -50,5 +59,10 @@ export class StreamResolver {
     @Mutation(() => Boolean, { name: 'removeStreamThumbnail' })
     public async removeThumbnail(@Authorized() user: User) {
         return this.streamService.removeThumbnail(user)
+    }
+
+    @Mutation(() => GenerateTokenModel, { name: 'generateStreamToken' })
+    public async generateToken(@Args('data') input: GenerateStreamTokenInput) {
+        return this.streamService.generateToken(input)
     }
 }
