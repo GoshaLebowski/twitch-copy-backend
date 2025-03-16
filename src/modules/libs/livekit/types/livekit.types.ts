@@ -1,6 +1,6 @@
 import type { FactoryProvider, ModuleMetadata } from '@nestjs/common'
 
-export const LiveKitOptionsSymbol = Symbol('LiveKitOptionalSymbol')
+export const LiveKitOptionsSymbol = Symbol('LiveKitOptionsSymbol')
 
 export type TypeLiveKitOptions = {
     apiUrl: string

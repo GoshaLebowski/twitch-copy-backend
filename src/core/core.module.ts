@@ -25,6 +25,7 @@ import { IS_DEV_ENV } from '@/src/shared/utils/is-dev.util';
 
 import { PrismaModule } from './prisma/prisma.module';
 import { RedisModule } from './redis/redis.module';
+import { IngressModule } from '@/src/modules/stream/ingress/ingress.module'
 
 
 
@@ -59,7 +60,8 @@ import { RedisModule } from './redis/redis.module';
         TotpModule,
         DeactivateModule,
         StorageModule,
-        StreamModule
+        StreamModule,
+        IngressModule,
     ]
 })
 export class CoreModule {}

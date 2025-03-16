@@ -1,4 +1,4 @@
-import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { Field, HideField, ID, ObjectType } from '@nestjs/graphql'
 import type { User } from '@prisma/generated';
 
 
@@ -11,7 +11,7 @@ import { StreamModel } from '@/src/modules/stream/models/stream.model';
 
 
 @ObjectType()
-export class UserModel implements User {
+export class UserModel implements Omit<User, 'password'> {
     @Field(() => ID)
     id: string
 
@@ -24,8 +24,8 @@ export class UserModel implements User {
     @Field(() => String)
     displayName: string
 
-    @Field(() => String)
-    password: string
+    @HideField()
+    password?: string
 
     @Field(() => String, { nullable: true })
     avatar: string
