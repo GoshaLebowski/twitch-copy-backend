@@ -5,10 +5,7 @@ import {
     WebhookReceiver
 } from 'livekit-server-sdk'
 
-import {
-    LiveKitOptionsSymbol,
-    TypeLiveKitOptions
-} from '@/src/modules/libs/livekit/types/livekit.types'
+import { LiveKitOptionsSymbol, TypeLiveKitOptions } from './types/livekit.types'
 
 @Injectable()
 export class LivekitService {

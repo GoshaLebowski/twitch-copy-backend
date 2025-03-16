@@ -1,10 +1,17 @@
-import { type DynamicModule, Module } from '@nestjs/common'
+import { type DynamicModule, Module } from '@nestjs/common';
 
-import { LivekitService } from '@/src/modules/libs/livekit/livekit.service'
+
+
+import { LivekitService } from './livekit.service';
 import {
-    LiveKitOptionsSymbol, TypeLiveKitAsyncOptions,
+    LiveKitOptionsSymbol,
+    TypeLiveKitAsyncOptions,
     type TypeLiveKitOptions
-} from '@/src/modules/libs/livekit/types/livekit.types'
+} from './types/livekit.types'
+
+
+
+
 
 @Module({})
 export class LivekitModule {
@@ -23,7 +30,9 @@ export class LivekitModule {
         }
     }
 
-    public static registerAsync(options: TypeLiveKitAsyncOptions): DynamicModule {
+    public static registerAsync(
+        options: TypeLiveKitAsyncOptions
+    ): DynamicModule {
         return {
             module: LivekitModule,
             imports: options.imports || [],
