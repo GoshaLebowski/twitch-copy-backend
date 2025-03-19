@@ -16,6 +16,14 @@ export class CategoryService {
         return this.prismaService.category.findMany({
             orderBy: {
                 createdAt: 'desc'
+            },
+            include: {
+                streams: {
+                    include: {
+                        user: true,
+                        category: true,
+                    }
+                }
             }
         })
     }
@@ -31,6 +39,14 @@ export class CategoryService {
         }
 
         const categories = await this.prismaService.category.findMany({
+            include: {
+                streams: {
+                    include: {
+                        user: true,
+                        category: true,
+                    }
+                }
+            },
             take: total,
             skip: 0
         })
