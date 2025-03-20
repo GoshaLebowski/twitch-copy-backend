@@ -17,6 +17,7 @@ import { VerificationModule } from '@/src/modules/auth/verification/verification
 import { CategoryModule } from '@/src/modules/category/category.module';
 import { ChatModule } from '@/src/modules/chat/chat.module';
 import { CronModule } from '@/src/modules/cron/cron.module';
+import { FollowModule } from '@/src/modules/follow/follow.module';
 import { LivekitModule } from '@/src/modules/libs/livekit/livekit.module';
 import { MailModule } from '@/src/modules/libs/mail/mail.module';
 import { StorageModule } from '@/src/modules/libs/storage/storage.module';
@@ -67,7 +68,8 @@ import { RedisModule } from './redis/redis.module';
         IngressModule,
         WebhookModule,
         CategoryModule,
-        ChatModule
+        ChatModule,
+        FollowModule
     ]
 })
 export class CoreModule {}
