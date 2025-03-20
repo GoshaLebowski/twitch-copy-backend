@@ -15,6 +15,7 @@ import { SessionModule } from '@/src/modules/auth/session/session.module';
 import { TotpModule } from '@/src/modules/auth/totp/totp.module';
 import { VerificationModule } from '@/src/modules/auth/verification/verification.module';
 import { CategoryModule } from '@/src/modules/category/category.module';
+import { ChannelModule } from '@/src/modules/channel/channel.module';
 import { ChatModule } from '@/src/modules/chat/chat.module';
 import { CronModule } from '@/src/modules/cron/cron.module';
 import { FollowModule } from '@/src/modules/follow/follow.module';
@@ -69,7 +70,8 @@ import { RedisModule } from './redis/redis.module';
         WebhookModule,
         CategoryModule,
         ChatModule,
-        FollowModule
+        FollowModule,
+        ChannelModule
     ]
 })
 export class CoreModule {}

@@ -128,7 +128,7 @@ model User {
 
   tokens       Token[]
   socialLinks  SocialLink[]
-  stream       Stream[]
+  stream       Stream?
   chatMessages ChatMessage[]
 
   followers  Follow[] @relation(name: "followers")
