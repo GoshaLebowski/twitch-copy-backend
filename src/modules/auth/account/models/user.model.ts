@@ -1,11 +1,13 @@
-import { Field, HideField, ID, ObjectType } from '@nestjs/graphql'
+import { Field, HideField, ID, ObjectType } from '@nestjs/graphql';
 import type { User } from '@prisma/generated';
 
 
 
 import { SocialLinkModel } from '@/src/modules/auth/profile/models/social-link.model';
+import { FollowModel } from '@/src/modules/follow/models/follow.model';
+import { NotificationSettingsModel } from '@/src/modules/notification/models/notification-settings.model';
+import { NotificationModel } from '@/src/modules/notification/models/notification.model';
 import { StreamModel } from '@/src/modules/stream/models/stream.model';
-import { FollowModel } from '@/src/modules/follow/models/follow.model'
 
 
 
@@ -32,6 +34,9 @@ export class UserModel implements Omit<User, 'password'> {
     avatar: string
 
     @Field(() => String, { nullable: true })
+    telegramId: string
+
+    @Field(() => String, { nullable: true })
     bio: string
 
     @Field(() => Boolean)
@@ -55,14 +60,20 @@ export class UserModel implements Omit<User, 'password'> {
     @Field(() => [SocialLinkModel])
     socialLinks: SocialLinkModel[]
 
+    @Field(() => StreamModel)
+    stream: StreamModel
+
+    @Field(() => [NotificationModel])
+    notifications: NotificationModel[]
+
+    @Field(() => NotificationSettingsModel)
+    notificationSettings: NotificationSettingsModel
+
     @Field(() => FollowModel)
     followers: FollowModel[]
 
     @Field(() => [FollowModel])
     followings: FollowModel[]
-
-    @Field(() => StreamModel)
-    stream: StreamModel
 
     @Field(() => Date)
     createdAt: Date

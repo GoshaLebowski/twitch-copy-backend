@@ -1,6 +1,6 @@
-import { ConflictException, Injectable, UnauthorizedException } from '@nestjs/common'
+import { ConflictException, Injectable, UnauthorizedException } from '@nestjs/common';
 import type { User } from '@prisma/generated';
-import { hash, verify } from 'argon2'
+import { hash, verify } from 'argon2';
 
 
 
@@ -9,6 +9,8 @@ import { ChangeEmailInput } from '@/src/modules/auth/account/inputs/change-email
 import { ChangePasswordInput } from '@/src/modules/auth/account/inputs/change-password.input';
 import { CreateUserInput } from '@/src/modules/auth/account/inputs/create-user.input';
 import { VerificationService } from '@/src/modules/auth/verification/verification.service';
+import { NotificationService } from '@/src/modules/notification/notification.service';
+import { ChangeNotificationsSettingsInput } from '@/src/modules/notification/inputs/change-notifications-settings.input'
 
 
 
@@ -18,7 +20,8 @@ import { VerificationService } from '@/src/modules/auth/verification/verificatio
 export class AccountService {
     public constructor(
         private readonly prismaService: PrismaService,
-        private readonly verificationService: VerificationService
+        private readonly verificationService: VerificationService,
+        private readonly notificationService: NotificationService
     ) {}
 
     public async me(id: string) {
@@ -62,6 +65,13 @@ export class AccountService {
             }
         })
 
+        const inputChangeNotificationsSettings: ChangeNotificationsSettingsInput = {
+            siteNotifications: true,
+            telegramNotifications: false
+        }
+
+        await this.notificationService.changeSettings(user, inputChangeNotificationsSettings)
+
         await this.verificationService.sendVerificationToken(user)
 
         return true
@@ -83,7 +93,7 @@ export class AccountService {
     }
 
     public async changePassword(user: User, input: ChangePasswordInput) {
-        const {oldPassword, newPassword} = input
+        const { oldPassword, newPassword } = input
 
         const isValidPassword = await verify(user.password, oldPassword)
 

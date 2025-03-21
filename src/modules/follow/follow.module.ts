@@ -1,8 +1,19 @@
 import { Module } from '@nestjs/common';
-import { FollowService } from './follow.service';
+
+
+
+import { NotificationService } from '@/src/modules/notification/notification.service';
+
+
+
 import { FollowResolver } from './follow.resolver';
+import { FollowService } from './follow.service';
+
+
+
+
 
 @Module({
-  providers: [FollowResolver, FollowService],
+    providers: [FollowResolver, FollowService, NotificationService]
 })
 export class FollowModule {}
