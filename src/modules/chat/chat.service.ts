@@ -3,7 +3,7 @@ import {
     Injectable,
     NotFoundException
 } from '@nestjs/common'
-import { User } from '@prisma/generated'
+import type { User } from '@prisma/generated'
 
 import { PrismaService } from '@/src/core/prisma/prisma.service'
 import { ChangeChatSettingsInput } from '@/src/modules/chat/input/change-chat-settings.input'

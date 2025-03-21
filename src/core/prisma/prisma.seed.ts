@@ -8,13 +8,17 @@ import { DefaultArgs } from '@/prisma/generated/runtime/library';
 
 
 
-import { Prisma, PrismaClient } from "../../../prisma/generated";
+import { Prisma, PrismaClient } from '../../../prisma/generated';
 
 
 
 import { CATEGORIES } from './data/categories.data';
 import { STREAMS } from './data/streams.data';
-import { USERNAMES } from './data/users.data'
+import { USERNAMES } from './data/users.data';
+
+
+
+
 
 const prisma = new PrismaClient({
     transactionOptions: {
@@ -92,8 +96,16 @@ async function createUserAndStream(
             category: { connect: { id: randomCategory.id } }
         }
     })
+
+    await tx.notificationSettings.create({
+        data: {
+            siteNotifications: true,
+            telegramNotifications: false,
+            userId: createdUser.id
+        }
+    })
     Logger.log(
-        `Пользователь "${createdUser.username}" и его стрим успешно созданы`
+        `Пользователь "${createdUser.username}" и его стрим, а также настройка уведомлений успешно созданы`
     )
 }
 
@@ -156,8 +168,16 @@ async function main() {
                     category: { connect: { id: ownerCategory.id } }
                 }
             })
+
+            await tx.notificationSettings.create({
+                data: {
+                    siteNotifications: true,
+                    telegramNotifications: false,
+                    userId: ownerUser.id
+                }
+            })
             Logger.log(
-                `Основной пользователь "${ownerUser.username}" и его стрим успешно созданы`
+                `Основной пользователь "${ownerUser.username}" и его стрим, а также настройка уведомлений успешно созданы`
             )
         })
         Logger.log('Заполнение базы данных завершено успешно')

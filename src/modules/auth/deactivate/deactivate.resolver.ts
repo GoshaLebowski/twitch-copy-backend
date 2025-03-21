@@ -1,5 +1,5 @@
 import { Args, Context, Mutation, Resolver } from '@nestjs/graphql'
-import { User } from '@prisma/generated'
+import type { User } from '@prisma/generated'
 
 import { AuthModel } from '@/src/modules/auth/account/models/auth.model'
 import { DeactivateAccountInput } from '@/src/modules/auth/deactivate/inputs/deactivate-account.input'
