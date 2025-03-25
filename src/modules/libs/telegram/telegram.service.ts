@@ -1,14 +1,22 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config'
-import { TokenType, type User } from '@prisma/generated'
-import { Action, Command, Ctx, Start, Update } from 'nestjs-telegraf'
-import { Context, Telegraf } from 'telegraf'
+import { type SponsorshipPlan, TokenType, type User } from '@prisma/generated'
+import { Action, Command, Ctx, Start, Update } from 'nestjs-telegraf';
+import { Context, Telegraf } from 'telegraf';
 
-import { PrismaService } from '@/src/core/prisma/prisma.service'
-import { BUTTONS } from '@/src/modules/libs/telegram/telegram.buttons'
-import type { SessionMetadata } from '@/src/shared/types/session-metadata.types'
 
-import { MESSAGES } from './telegram.messages'
+
+import { PrismaService } from '@/src/core/prisma/prisma.service';
+import { BUTTONS } from '@/src/modules/libs/telegram/telegram.buttons';
+import type { SessionMetadata } from '@/src/shared/types/session-metadata.types';
+
+
+
+import { MESSAGES } from './telegram.messages';
+
+
+
+
 
 @Update()
 @Injectable()
@@ -153,6 +161,20 @@ export class TelegramService extends Telegraf {
         await this.telegram.sendMessage(
             chatId,
             MESSAGES.newFollowing(follower, user.followings.length),
+            {
+                parse_mode: 'HTML'
+            }
+        )
+    }
+
+    public async sendNewSponsorship(
+        chatId: string,
+        plan: SponsorshipPlan,
+        sponsor: User
+    ) {
+        await this.telegram.sendMessage(
+            chatId,
+            MESSAGES.newSponsorship(plan, sponsor),
             {
                 parse_mode: 'HTML'
             }
