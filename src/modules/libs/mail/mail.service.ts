@@ -7,9 +7,11 @@ import { render } from '@react-email/components';
 
 import { AccountDeletionTemplate } from '@/src/modules/libs/mail/templates/account-deletion.template';
 import { DeactivateTemplate } from '@/src/modules/libs/mail/templates/deactivate.template';
-import { PasswordRecoveryTemplate } from '@/src/modules/libs/mail/templates/password-recovery.template'
+import { EnableTwoFactorTemplate } from '@/src/modules/libs/mail/templates/enable-two-factor.template';
+import { PasswordRecoveryTemplate } from '@/src/modules/libs/mail/templates/password-recovery.template';
 import { VerificationTemplate } from '@/src/modules/libs/mail/templates/verification.template'
-import type { SessionMetadata } from '@/src/shared/types/session-metadata.types'
+import { VerifyChannelTemplate } from '@/src/modules/libs/mail/templates/verify-channel.template'
+import type { SessionMetadata } from '@/src/shared/types/session-metadata.types';
 
 
 
@@ -57,6 +59,19 @@ export class MailService {
         const html = await render(AccountDeletionTemplate({ domain }))
 
         return this.sendMail(email, 'Аккаунт удалён', html)
+    }
+
+    public async sendEnableTwoFactor(email: string) {
+        const domain = this.configService.getOrThrow<string>('ALLOWED_ORIGIN')
+        const html = await render(EnableTwoFactorTemplate({ domain }))
+
+        return this.sendMail(email, 'Обеспечьте свою безопасность', html)
+    }
+
+    public async sendVerifyChannel(email: string) {
+        const html = await render(VerifyChannelTemplate())
+
+        return this.sendMail(email, 'Ваш канал верифицирован', html)
     }
 
     private sendMail(email: string, subject: string, html: string) {
