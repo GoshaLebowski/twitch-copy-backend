@@ -13,7 +13,7 @@ export function getMailerConfig(configService: ConfigService): MailerOptions {
             }
         },
         defaults: {
-            from: `"Gosha Lebowski" ${configService.getOrThrow<string>('MAIL_LOGIN')}`
+            from: `"TestStream" ${configService.getOrThrow<string>('MAIL_LOGIN')}`
         }
     }
 }
