@@ -1,9 +1,15 @@
-import { Injectable } from '@nestjs/common'
-import { NotificationType, TokenType, type User } from '@prisma/generated'
+import { Injectable } from '@nestjs/common';
+import { NotificationType, type SponsorshipPlan, TokenType, type User } from '@prisma/generated';
 
-import { PrismaService } from '@/src/core/prisma/prisma.service'
-import { ChangeNotificationsSettingsInput } from '@/src/modules/notification/inputs/change-notifications-settings.input'
-import { generateToken } from '@/src/shared/utils/generate-token.util'
+
+
+import { PrismaService } from '@/src/core/prisma/prisma.service';
+import { ChangeNotificationsSettingsInput } from '@/src/modules/notification/inputs/change-notifications-settings.input';
+import { generateToken } from '@/src/shared/utils/generate-token.util';
+
+
+
+
 
 @Injectable()
 export class NotificationService {
@@ -60,6 +66,25 @@ export class NotificationService {
                 message: `<b className='font-medium'>У вас новый подписчик!</b>
 				<p>Это пользователь <a href='/${follower.username}' className='font-semibold'>${follower.displayName}</a>.</p>`,
                 type: NotificationType.NEW_FOLLOWER,
+                user: {
+                    connect: {
+                        id: userId
+                    }
+                }
+            }
+        })
+    }
+
+    public async createNewSponsorship(
+        userId: string,
+        plan: SponsorshipPlan,
+        sponsor: User
+    ) {
+        return this.prismaService.notification.create({
+            data: {
+                message: `<b className='font-medium'>У вас новый спонсор!</b>
+				<p>Пользователь <a href='/${sponsor.username}' className='font-semibold'>${sponsor.displayName}</a> стал вашим спонсором, выбрав план <strong>${plan.title}</strong>.</p>`,
+                type: NotificationType.NEW_SPONSORSHIP,
                 user: {
                     connect: {
                         id: userId

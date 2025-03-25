@@ -60,4 +60,30 @@ export class ChannelService {
             }
         })
     }
+
+    public async findSponsorsByChannel(channelId: string) {
+        const channel = await this.prismaService.user.findUnique({
+            where: {
+                id: channelId
+            }
+        })
+
+        if (!channel) {
+            throw new NotFoundException('Канал не найден')
+        }
+
+        return this.prismaService.sponsorshipSubscription.findMany({
+            where: {
+                channelId
+            },
+            orderBy: {
+                createdAt: 'desc'
+            },
+            include: {
+                plan: true,
+                user: true,
+                channel: true
+            }
+        })
+    }
 }
