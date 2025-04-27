@@ -31,7 +31,7 @@ export class CronService {
         const deactivatedAccount = await this.prismaService.user.findMany({
             where: {
                 isDeactivated: true,
-                deactivateAt: {
+                deactivatedAt: {
                     lte: sevenDaysAgo
                 }
             },
@@ -63,7 +63,7 @@ export class CronService {
         await this.prismaService.user.deleteMany({
             where: {
                 isDeactivated: true,
-                deactivateAt: {
+                deactivatedAt: {
                     lte: sevenDaysAgo
                 }
             }

@@ -1,8 +1,16 @@
-import { Field, ObjectType, registerEnumType } from '@nestjs/graphql'
+import { Field, ObjectType, registerEnumType } from '@nestjs/graphql';
 
-import { type Notification, NotificationType } from '@/prisma/generated'
 
-import { UserModel } from '../../auth/account/models/user.model'
+
+import { type Notification, NotificationType } from '@/prisma/generated';
+
+
+
+import { UserModel } from '../../auth/account/models/user.model';
+
+
+
+
 
 registerEnumType(NotificationType, {
     name: 'NotificationType'
@@ -11,26 +19,26 @@ registerEnumType(NotificationType, {
 @ObjectType()
 export class NotificationModel implements Notification {
     @Field(() => String)
-    public id: string
+    id: string
 
     @Field(() => String)
-    public message: string
+    message: string
 
     @Field(() => NotificationType)
-    public type: NotificationType
+    type: NotificationType
 
     @Field(() => Boolean)
-    public isRead: boolean
+    isRead: boolean
 
     @Field(() => UserModel)
-    public user: UserModel
+    user: UserModel
 
     @Field(() => String)
-    public userId: string
+    userId: string
 
     @Field(() => Date)
-    public createdAt: Date
+    createdAt: Date
 
     @Field(() => Date)
-    public updatedAt: Date
+    updatedAt: Date
 }

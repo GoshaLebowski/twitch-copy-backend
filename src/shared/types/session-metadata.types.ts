@@ -1,7 +1,7 @@
 export interface LocationInfo {
     country: string
     city: string
-    latitude: number
+    latidute: number
     longitude: number
 }
 

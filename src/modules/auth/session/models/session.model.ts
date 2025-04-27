@@ -1,61 +1,63 @@
-import { Field, ID, ObjectType } from '@nestjs/graphql'
+import { Field, ID, ObjectType } from '@nestjs/graphql';
 
-import type {
-    DeviceInfo,
-    LocationInfo,
-    SessionMetadata
-} from '@/src/shared/types/session-metadata.types'
+
+
+import type { DeviceInfo, LocationInfo, SessionMetadata } from '@/src/shared/types/session-metadata.types';
+
+
+
+
 
 @ObjectType()
 export class LocationModel implements LocationInfo {
     @Field(() => String)
-    public country: string
+    country: string
 
     @Field(() => String)
-    public city: string
+    city: string
 
     @Field(() => Number)
-    public latitude: number
+    latidute: number
 
     @Field(() => Number)
-    public longitude: number
+    longitude: number
 }
 
 @ObjectType()
 export class DeviceModel implements DeviceInfo {
     @Field(() => String)
-    public browser: string
+    browser: string
 
     @Field(() => String)
-    public os: string
+    os: string
 
     @Field(() => String)
-    public type: string
+    type: string
 }
 
 @ObjectType()
 export class SessionMetadataModel implements SessionMetadata {
     @Field(() => LocationModel)
-    public location: LocationModel
+    location: LocationModel
 
     @Field(() => DeviceModel)
-    public device: DeviceModel
+    device: DeviceModel
 
     @Field(() => String)
-    public ip: string
+    ip: string
 }
 
 @ObjectType()
 export class SessionModel {
     @Field(() => ID)
-    public id: string
+    id: string
 
     @Field(() => String)
-    public userId: string
+    userId: string
 
     @Field(() => String)
-    public createdAt: string
+    createdAt: string
 
     @Field(() => SessionMetadataModel)
-    public metadata: SessionMetadataModel
+    metadata: SessionMetadataModel
 }

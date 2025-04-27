@@ -82,7 +82,7 @@ export class DeactivateService {
             },
             data: {
                 isDeactivated: true,
-                deactivateAt: new Date(),
+                deactivatedAt: new Date(),
             }
         })
 

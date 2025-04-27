@@ -21,7 +21,17 @@ import { CoreModule } from './core/core.module';
 
 
 async function bootstrap() {
-    const app = await NestFactory.create(CoreModule, { rawBody: true })
+    // const httpsOptions = {
+    //     key: fs.readFileSync(
+    //         path.resolve(__dirname, '../cert/127.0.0.1-key.pem')
+    //     ),
+    //     cert: fs.readFileSync(path.resolve(__dirname, '../cert/127.0.0.1.pem'))
+    // }
+
+    const app = await NestFactory.create(CoreModule, {
+        // httpsOptions,
+        rawBody: true
+    })
 
     const config = app.get(ConfigService)
     const redis = app.get(RedisService)

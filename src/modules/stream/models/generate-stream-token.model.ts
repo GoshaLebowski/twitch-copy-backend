@@ -5,10 +5,7 @@ import { Field, ObjectType } from '@nestjs/graphql';
 
 
 @ObjectType()
-export class TotpModel {
+export class GenerateStreamTokenModel {
     @Field(() => String)
-    qrcodeUrl: string
-
-    @Field(() => String)
-    secret: string
+    token: string
 }

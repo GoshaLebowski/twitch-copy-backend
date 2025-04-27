@@ -34,7 +34,7 @@
         "@nestjs/mapped-types": "*",
         "@nestjs/platform-express": "^10.0.0",
         "@nestjs/schedule": "^5.0.1",
-        "@prisma/client": "^6.2.1",
+        "@prisma/client": "^6.5.0",
         "@react-email/components": "^0.0.32",
         "@react-email/html": "^0.0.11",
         "@react-email/tailwind": "^1.0.4",
@@ -92,7 +92,7 @@
         "supertest": "^7.0.0",
         "ts-jest": "^29.1.0",
         "ts-loader": "^9.4.3",
-        "ts-node": "^10.9.1",
+        "ts-node": "^10.9.2",
         "tsconfig-paths": "^4.2.0",
         "typescript": "^5.1.3"
     },

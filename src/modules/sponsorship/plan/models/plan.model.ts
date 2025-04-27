@@ -1,37 +1,43 @@
-import { Field, ID, ObjectType } from '@nestjs/graphql'
+import { Field, ID, ObjectType } from '@nestjs/graphql';
 
-import type { SponsorshipPlan } from '@/prisma/generated'
-import { UserModel } from '@/src/modules/auth/account/models/user.model'
+
+
+import type { SponsorshipPlan } from '@/prisma/generated';
+import { UserModel } from '@/src/modules/auth/account/models/user.model';
+
+
+
+
 
 @ObjectType()
 export class PlanModel implements SponsorshipPlan {
     @Field(() => ID)
-    public id: string
+    id: string
 
     @Field(() => String)
-    public title: string
+    title: string
 
     @Field(() => String, { nullable: true })
-    public description: string
+    description: string
 
     @Field(() => Number)
-    public price: number
+    price: number
 
     @Field(() => String)
-    public stripeProductId: string
+    stripeProductId: string
 
     @Field(() => String)
-    public stripePlanId: string
+    stripePlanId: string
 
     @Field(() => UserModel)
-    public channel: UserModel
+    channel: UserModel
 
     @Field(() => String)
-    public channelId: string
+    channelId: string
 
     @Field(() => Date)
-    public createdAt: Date
+    createdAt: Date
 
     @Field(() => Date)
-    public updatedAt: Date
+    updatedAt: Date
 }

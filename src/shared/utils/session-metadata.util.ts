@@ -30,7 +30,7 @@ export function getSessionMetadata(
         location: {
             country: countries.getName(location.country, 'en') || 'Неизвестно',
             city: location?.city || 'Неизвестно',
-            latitude: location?.ll?.[0] || 0,
+            latidute: location?.ll?.[0] || 0,
             longitude: location?.ll?.[1] || 0
         },
         device: {

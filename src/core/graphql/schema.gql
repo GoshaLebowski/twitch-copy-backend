@@ -120,14 +120,14 @@ input GenerateStreamTokenInput {
   userId: String!
 }
 
-type GenerateTokenModel {
+type GenerateStreamTokenModel {
   token: String!
 }
 
 type LocationModel {
   city: String!
   country: String!
-  latitude: Float!
+  latidute: Float!
   longitude: Float!
 }
 
@@ -159,7 +159,7 @@ type Mutation {
   disableTotp: Boolean!
   enableTotp(data: EnableTotpInput!): Boolean!
   followChannel(channelId: String!): Boolean!
-  generateStreamToken(data: GenerateStreamTokenInput!): GenerateTokenModel!
+  generateStreamToken(data: GenerateStreamTokenInput!): GenerateStreamTokenModel!
   loginUser(data: LoginInput!): AuthModel!
   logoutUser: Boolean!
   makePayment(planId: String!): MakePaymentModel!
@@ -293,8 +293,8 @@ input SocialLinkOrderInput {
 }
 
 type StreamModel {
-  category: CategoryModel!
-  categoryId: String!
+  category: CategoryModel
+  categoryId: String
   chatMessages: [ChatMessageModel!]!
   createdAt: DateTime!
   id: ID!
@@ -360,10 +360,10 @@ type UserModel {
   avatar: String
   bio: String
   createdAt: DateTime!
-  deactivateAt: DateTime
+  deactivatedAt: DateTime
   displayName: String!
   email: String!
-  followers: FollowModel!
+  followers: [FollowModel!]!
   followings: [FollowModel!]!
   id: ID!
   isDeactivated: Boolean!
@@ -372,7 +372,10 @@ type UserModel {
   isVerified: Boolean!
   notificationSettings: NotificationSettingsModel!
   notifications: [NotificationModel!]!
+  password: String!
   socialLinks: [SocialLinkModel!]!
+  sponsorshipPlans: [PlanModel!]!
+  sponsorshipSubscriptions: [SubscriptionModel!]!
   stream: StreamModel!
   telegramId: String
   totpSecret: String
