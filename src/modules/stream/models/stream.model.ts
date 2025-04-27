@@ -1,12 +1,13 @@
 import { Optional } from '@nestjs/common';
 import { Field, ID, ObjectType } from '@nestjs/graphql';
-import type { Stream } from '@prisma/generated';
 
 
 
-import { UserModel } from '@/src/modules/auth/account/models/user.model';
-import { CategoryModel } from '@/src/modules/category/models/category.model';
-import { ChatMessageModel } from '@/src/modules/chat/models/chat-message.model';
+import type { Stream } from '@/prisma/generated'
+
+import { UserModel } from '../../auth/account/models/user.model'
+import { CategoryModel } from '../../category/models/category.model'
+import { ChatMessageModel } from '../../chat/models/chat-message.model'
 
 
 
@@ -54,10 +55,12 @@ export class StreamModel implements Stream {
     @Field(() => String)
     userId: string
 
-    @Field(() => CategoryModel)
+    @Optional()
+    @Field(() => CategoryModel, { nullable: true })
     category: CategoryModel
 
-    @Field(() => String)
+    @Optional()
+    @Field(() => String, { nullable: true })
     categoryId: string
 
     @Field(() => [ChatMessageModel])

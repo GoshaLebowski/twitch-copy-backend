@@ -4,7 +4,6 @@ import {
     IsOptional,
     IsString,
     Length,
-    Matches,
     MinLength
 } from 'class-validator'
 
@@ -13,7 +12,6 @@ export class LoginInput {
     @Field()
     @IsString()
     @IsNotEmpty()
-    @Matches(/^[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*$/)
     login: string
 
     @Field()

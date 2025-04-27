@@ -1,5 +1,6 @@
 import { Field, ID, ObjectType } from '@nestjs/graphql'
-import type { SocialLink } from '@prisma/generated'
+
+import type { SocialLink } from '@/prisma/generated'
 
 @ObjectType()
 export class SocialLinkModel implements SocialLink {

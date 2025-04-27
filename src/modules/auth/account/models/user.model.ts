@@ -1,20 +1,25 @@
-import { Field, HideField, ID, ObjectType } from '@nestjs/graphql';
-import type { User } from '@prisma/generated';
+import { Field, ID, ObjectType } from '@nestjs/graphql';
 
 
 
-import { SocialLinkModel } from '@/src/modules/auth/profile/models/social-link.model';
+import type { User } from '@/prisma/generated';
 import { FollowModel } from '@/src/modules/follow/models/follow.model';
 import { NotificationSettingsModel } from '@/src/modules/notification/models/notification-settings.model';
 import { NotificationModel } from '@/src/modules/notification/models/notification.model';
+import { PlanModel } from '@/src/modules/sponsorship/plan/models/plan.model';
+import { SubscriptionModel } from '@/src/modules/sponsorship/subscription/models/subscription.model';
 import { StreamModel } from '@/src/modules/stream/models/stream.model';
+
+
+
+import { SocialLinkModel } from '../../profile/models/social-link.model';
 
 
 
 
 
 @ObjectType()
-export class UserModel implements Omit<User, 'password'> {
+export class UserModel implements User {
     @Field(() => ID)
     id: string
 
@@ -22,22 +27,22 @@ export class UserModel implements Omit<User, 'password'> {
     email: string
 
     @Field(() => String)
+    password: string
+
+    @Field(() => String)
     username: string
 
     @Field(() => String)
     displayName: string
 
-    @HideField()
-    password?: string
-
     @Field(() => String, { nullable: true })
     avatar: string
 
     @Field(() => String, { nullable: true })
-    telegramId: string
+    bio: string
 
     @Field(() => String, { nullable: true })
-    bio: string
+    telegramId: string
 
     @Field(() => Boolean)
     isVerified: boolean
@@ -55,7 +60,7 @@ export class UserModel implements Omit<User, 'password'> {
     isDeactivated: boolean
 
     @Field(() => Date, { nullable: true })
-    deactivateAt: Date
+    deactivatedAt: Date
 
     @Field(() => [SocialLinkModel])
     socialLinks: SocialLinkModel[]
@@ -69,11 +74,17 @@ export class UserModel implements Omit<User, 'password'> {
     @Field(() => NotificationSettingsModel)
     notificationSettings: NotificationSettingsModel
 
-    @Field(() => FollowModel)
+    @Field(() => [FollowModel])
     followers: FollowModel[]
 
     @Field(() => [FollowModel])
     followings: FollowModel[]
+
+    @Field(() => [PlanModel])
+    sponsorshipPlans: PlanModel[]
+
+    @Field(() => [SubscriptionModel])
+    sponsorshipSubscriptions: SubscriptionModel[]
 
     @Field(() => Date)
     createdAt: Date
