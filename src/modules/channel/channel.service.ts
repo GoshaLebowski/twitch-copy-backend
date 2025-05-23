@@ -40,7 +40,9 @@ export class ChannelService {
                         category: true
                     }
                 },
-                followings: true
+                followings: true,
+                sponsorshipPlans: true,
+                sponsorshipSubscriptions: true
             }
         })
 

@@ -25,7 +25,7 @@ export class StreamService {
         private readonly storageService: StorageService
     ) {}
 
-    public async findAll(input: FiltersInput = {}) {
+    public async findAll(input: FiltersInput) {
         const { take, skip, searchTerm } = input
 
         const whereClause = searchTerm
@@ -251,6 +251,14 @@ export class StreamService {
                 {
                     user: {
                         username: {
+                            contains: searchTerm,
+                            mode: 'insensitive'
+                        }
+                    }
+                },
+                {
+                    category: {
+                        title: {
                             contains: searchTerm,
                             mode: 'insensitive'
                         }

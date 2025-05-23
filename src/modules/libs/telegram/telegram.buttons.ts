@@ -6,12 +6,12 @@ export const BUTTONS = {
             Markup.button.callback('📜 Мои подписки', 'follows'),
             Markup.button.callback('👤 Просмотреть профиль', 'me')
         ],
-        [Markup.button.url('🌐 На сайт', 'https://teststream.ru')]
+        [Markup.button.url('🌐 На сайт', 'https://teststreamcourse.ru')]
     ]),
     profile: Markup.inlineKeyboard([
         Markup.button.url(
             '⚙️ Настройки аккаунта',
-            'https://teastream.ru/dashboard/settings'
+            'https://teststreamcourse.ru/dashboard/settings'
         )
     ])
 }

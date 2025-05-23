@@ -50,18 +50,27 @@ export class IngressService {
             throw new BadRequestException('Не удалось создать входной поток')
         }
 
-        await this.prismaService.stream.update({
+        const result = await this.prismaService.stream.updateMany({
             where: {
-                userId: user.id
+                userId: user.id,
+                user: {
+                    username: 'lebowski'
+                }
             },
             data: {
                 ingressId: ingress.ingressId,
                 serverUrl: ingress.url,
                 streamKey: ingress.streamKey
             }
-        })
+        });
 
-        return true
+        if (result.count === 0) {
+            throw new BadRequestException(
+                `Вы не можете создать ключ, это проект для теста`
+            );
+        }
+
+        return true;
     }
 
     private async resetIngresses(user: User) {
