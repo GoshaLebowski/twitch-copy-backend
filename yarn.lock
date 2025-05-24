@@ -7190,7 +7190,7 @@ neo-async@^2.6.2:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
   integrity sha512-Yd3UES5mWCSqR+qNT93S3UoYUkqAZ9lLg8a7g9rimsWmYGK8cVToA4/sF3RrshdyV3sAGMXVUmpMYOw+dLpOuw==
 
-nestjs-telegraf@^2.8.1:
+nestjs-telegraf@^2.9.1:
   version "2.9.1"
   resolved "https://registry.yarnpkg.com/nestjs-telegraf/-/nestjs-telegraf-2.9.1.tgz#2b10e6a2644aca164f1cb9dc61b99b9d144dfeb0"
   integrity sha512-iFy0beaRvEJWo4rtIfLK6mbrxlrhPsDKoXT/yyQDRfu9lmFKjada4bbR3COXua6VdbMd/NXIzMqSukJRsTkIjQ==
