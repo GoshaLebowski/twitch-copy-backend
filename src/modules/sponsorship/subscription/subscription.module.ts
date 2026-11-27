@@ -1,8 +1,9 @@
-import { Module } from '@nestjs/common';
-import { SubscriptionService } from './subscription.service';
-import { SubscriptionResolver } from './subscription.resolver';
+import { Module } from '@nestjs/common'
+
+import { SubscriptionResolver } from './subscription.resolver'
+import { SubscriptionService } from './subscription.service'
 
 @Module({
-  providers: [SubscriptionResolver, SubscriptionService],
+    providers: [SubscriptionResolver, SubscriptionService]
 })
 export class SubscriptionModule {}

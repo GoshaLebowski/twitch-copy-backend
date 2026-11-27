@@ -1,13 +1,7 @@
-import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { Field, ID, ObjectType } from '@nestjs/graphql'
 
-
-
-import type { SponsorshipPlan } from '@/prisma/generated';
-import { UserModel } from '@/src/modules/auth/account/models/user.model';
-
-
-
-
+import type { SponsorshipPlan } from '@/prisma/generated'
+import { UserModel } from '@/src/modules/auth/account/models/user.model'
 
 @ObjectType()
 export class PlanModel implements SponsorshipPlan {

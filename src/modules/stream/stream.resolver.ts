@@ -1,26 +1,18 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
-import type { User } from '@prisma/generated';
-import * as GraphQLUpload from 'graphql-upload/GraphQLUpload.js';
-import * as Upload from 'graphql-upload/Upload.js';
+import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
+import type { User } from '@prisma/generated'
+import * as GraphQLUpload from 'graphql-upload/GraphQLUpload.js'
+import * as Upload from 'graphql-upload/Upload.js'
 
+import { ChangeStreamInfoInput } from '@/src/modules/stream/inputs/change-stream-info.input'
+import { FiltersInput } from '@/src/modules/stream/inputs/filters.input'
+import { GenerateStreamTokenInput } from '@/src/modules/stream/inputs/generate-stream-token.input'
+import { GenerateStreamTokenModel } from '@/src/modules/stream/models/generate-stream-token.model'
+import { StreamModel } from '@/src/modules/stream/models/stream.model'
+import { Authorization } from '@/src/shared/decorators/auth.decorator'
+import { Authorized } from '@/src/shared/decorators/authorized.decorator'
+import { FileValidationPipe } from '@/src/shared/pipes/file-validation.pipe'
 
-
-import { ChangeStreamInfoInput } from '@/src/modules/stream/inputs/change-stream-info.input';
-import { FiltersInput } from '@/src/modules/stream/inputs/filters.input';
-import { GenerateStreamTokenInput } from '@/src/modules/stream/inputs/generate-stream-token.input';
-import { GenerateStreamTokenModel } from '@/src/modules/stream/models/generate-stream-token.model';
-import { StreamModel } from '@/src/modules/stream/models/stream.model';
-import { Authorization } from '@/src/shared/decorators/auth.decorator';
-import { Authorized } from '@/src/shared/decorators/authorized.decorator';
-import { FileValidationPipe } from '@/src/shared/pipes/file-validation.pipe';
-
-
-
-import { StreamService } from './stream.service';
-
-
-
-
+import { StreamService } from './stream.service'
 
 @Resolver('Stream')
 export class StreamResolver {

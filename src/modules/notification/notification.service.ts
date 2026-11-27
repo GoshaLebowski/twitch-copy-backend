@@ -1,15 +1,14 @@
-import { Injectable } from '@nestjs/common';
-import { NotificationType, type SponsorshipPlan, TokenType, type User } from '@prisma/generated';
+import { Injectable } from '@nestjs/common'
+import {
+    NotificationType,
+    type SponsorshipPlan,
+    TokenType,
+    type User
+} from '@prisma/generated'
 
-
-
-import { PrismaService } from '@/src/core/prisma/prisma.service';
-import { ChangeNotificationsSettingsInput } from '@/src/modules/notification/inputs/change-notifications-settings.input';
-import { generateToken } from '@/src/shared/utils/generate-token.util';
-
-
-
-
+import { PrismaService } from '@/src/core/prisma/prisma.service'
+import { ChangeNotificationsSettingsInput } from '@/src/modules/notification/inputs/change-notifications-settings.input'
+import { generateToken } from '@/src/shared/utils/generate-token.util'
 
 @Injectable()
 export class NotificationService {

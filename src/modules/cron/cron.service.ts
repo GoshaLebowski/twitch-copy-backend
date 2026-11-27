@@ -1,17 +1,11 @@
-import { Injectable } from '@nestjs/common';
-import { Cron, CronExpression } from '@nestjs/schedule';
+import { Injectable } from '@nestjs/common'
+import { Cron, CronExpression } from '@nestjs/schedule'
 
-
-
-import { PrismaService } from '@/src/core/prisma/prisma.service';
-import { MailService } from '@/src/modules/libs/mail/mail.service';
-import { StorageService } from '@/src/modules/libs/storage/storage.service';
-import { TelegramService } from '@/src/modules/libs/telegram/telegram.service';
-import { NotificationService } from '@/src/modules/notification/notification.service';
-
-
-
-
+import { PrismaService } from '@/src/core/prisma/prisma.service'
+import { MailService } from '@/src/modules/libs/mail/mail.service'
+import { StorageService } from '@/src/modules/libs/storage/storage.service'
+import { TelegramService } from '@/src/modules/libs/telegram/telegram.service'
+import { NotificationService } from '@/src/modules/notification/notification.service'
 
 @Injectable()
 export class CronService {

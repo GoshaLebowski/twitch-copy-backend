@@ -1,6 +1,8 @@
+name: twitch-copy
+
 services:
   db:
-    container_name: postgres
+    container_name: postgres-twitch-copy
     image: postgres:15.2
     restart: always
     environment:
@@ -14,7 +16,7 @@ services:
       - backend-twitch-copy
 
   redis:
-    container_name: redis
+    container_name: redis-twitch-copy
     image: redis:6.2
     restart: always
     ports:

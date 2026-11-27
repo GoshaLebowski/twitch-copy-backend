@@ -1,17 +1,9 @@
-import { Optional } from '@nestjs/common';
-import { Field, ID, ObjectType } from '@nestjs/graphql';
+import { Optional } from '@nestjs/common'
+import { Field, ID, ObjectType } from '@nestjs/graphql'
 
+import type { Category } from '@/prisma/generated'
 
-
-import type { Category } from '@/prisma/generated';
-
-
-
-import { StreamModel } from '../../stream/models/stream.model';
-
-
-
-
+import { StreamModel } from '../../stream/models/stream.model'
 
 @ObjectType()
 export class CategoryModel implements Category {

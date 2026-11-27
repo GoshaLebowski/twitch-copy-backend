@@ -1,16 +1,8 @@
-import { Field, ObjectType, registerEnumType } from '@nestjs/graphql';
+import { Field, ObjectType, registerEnumType } from '@nestjs/graphql'
 
+import { type Notification, NotificationType } from '@/prisma/generated'
 
-
-import { type Notification, NotificationType } from '@/prisma/generated';
-
-
-
-import { UserModel } from '../../auth/account/models/user.model';
-
-
-
-
+import { UserModel } from '../../auth/account/models/user.model'
 
 registerEnumType(NotificationType, {
     name: 'NotificationType'

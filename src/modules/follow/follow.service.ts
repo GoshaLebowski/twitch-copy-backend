@@ -1,15 +1,13 @@
-import { ConflictException, Injectable, NotFoundException } from '@nestjs/common';
-import type { User } from '@prisma/generated';
+import {
+    ConflictException,
+    Injectable,
+    NotFoundException
+} from '@nestjs/common'
+import type { User } from '@prisma/generated'
 
-
-
-import { PrismaService } from '@/src/core/prisma/prisma.service';
-import { TelegramService } from '@/src/modules/libs/telegram/telegram.service';
-import { NotificationService } from '@/src/modules/notification/notification.service';
-
-
-
-
+import { PrismaService } from '@/src/core/prisma/prisma.service'
+import { TelegramService } from '@/src/modules/libs/telegram/telegram.service'
+import { NotificationService } from '@/src/modules/notification/notification.service'
 
 @Injectable()
 export class FollowService {

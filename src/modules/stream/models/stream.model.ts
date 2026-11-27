@@ -1,17 +1,11 @@
-import { Optional } from '@nestjs/common';
-import { Field, ID, ObjectType } from '@nestjs/graphql';
-
-
+import { Optional } from '@nestjs/common'
+import { Field, ID, ObjectType } from '@nestjs/graphql'
 
 import type { Stream } from '@/prisma/generated'
 
 import { UserModel } from '../../auth/account/models/user.model'
 import { CategoryModel } from '../../category/models/category.model'
 import { ChatMessageModel } from '../../chat/models/chat-message.model'
-
-
-
-
 
 @ObjectType()
 export class StreamModel implements Stream {

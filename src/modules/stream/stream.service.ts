@@ -1,21 +1,15 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import * as Upload from 'graphql-upload/Upload.js';
-import { AccessToken } from 'livekit-server-sdk';
-import * as sharp from 'sharp';
+import { Injectable, NotFoundException } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
+import * as Upload from 'graphql-upload/Upload.js'
+import { AccessToken } from 'livekit-server-sdk'
+import * as sharp from 'sharp'
 
-
-
-import type { Prisma, User } from '@/prisma/generated';
-import { PrismaService } from '@/src/core/prisma/prisma.service';
-import { StorageService } from '@/src/modules/libs/storage/storage.service';
-import { ChangeStreamInfoInput } from '@/src/modules/stream/inputs/change-stream-info.input';
-import { FiltersInput } from '@/src/modules/stream/inputs/filters.input';
-import { GenerateStreamTokenInput } from '@/src/modules/stream/inputs/generate-stream-token.input';
-
-
-
-
+import type { Prisma, User } from '@/prisma/generated'
+import { PrismaService } from '@/src/core/prisma/prisma.service'
+import { StorageService } from '@/src/modules/libs/storage/storage.service'
+import { ChangeStreamInfoInput } from '@/src/modules/stream/inputs/change-stream-info.input'
+import { FiltersInput } from '@/src/modules/stream/inputs/filters.input'
+import { GenerateStreamTokenInput } from '@/src/modules/stream/inputs/generate-stream-token.input'
 
 @Injectable()
 export class StreamService {

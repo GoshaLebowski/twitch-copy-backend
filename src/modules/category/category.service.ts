@@ -1,12 +1,6 @@
 import { Injectable, NotFoundException } from '@nestjs/common'
 
-
-
-import { PrismaService } from '@/src/core/prisma/prisma.service';
-
-
-
-
+import { PrismaService } from '@/src/core/prisma/prisma.service'
 
 @Injectable()
 export class CategoryService {
@@ -21,7 +15,7 @@ export class CategoryService {
                 streams: {
                     include: {
                         user: true,
-                        category: true,
+                        category: true
                     }
                 }
             }
@@ -43,7 +37,7 @@ export class CategoryService {
                 streams: {
                     include: {
                         user: true,
-                        category: true,
+                        category: true
                     }
                 }
             },
