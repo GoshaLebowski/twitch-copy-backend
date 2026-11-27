@@ -1,14 +1,8 @@
-import { Field, ID, ObjectType } from '@nestjs/graphql';
-
-
+import { Field, ID, ObjectType } from '@nestjs/graphql'
 
 import type { Follow } from '@/prisma/generated'
 
 import { UserModel } from '../../auth/account/models/user.model'
-
-
-
-
 
 @ObjectType()
 export class FollowModel implements Follow {

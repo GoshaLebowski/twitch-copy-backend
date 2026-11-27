@@ -1,17 +1,9 @@
-import { Args, Query, Resolver } from '@nestjs/graphql';
-
-
+import { Args, Query, Resolver } from '@nestjs/graphql'
 
 import { UserModel } from '@/src/modules/auth/account/models/user.model'
 import { SubscriptionModel } from '@/src/modules/sponsorship/subscription/models/subscription.model'
 
-
-
-import { ChannelService } from './channel.service';
-
-
-
-
+import { ChannelService } from './channel.service'
 
 @Resolver('Channel')
 export class ChannelResolver {

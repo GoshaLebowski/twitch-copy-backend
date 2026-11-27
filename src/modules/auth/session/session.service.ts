@@ -1,21 +1,21 @@
-import { BadRequestException, ConflictException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { verify } from 'argon2';
-import type { Request } from 'express';
-import { TOTP } from 'otpauth';
+import {
+    BadRequestException,
+    ConflictException,
+    Injectable,
+    NotFoundException,
+    UnauthorizedException
+} from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
+import { verify } from 'argon2'
+import type { Request } from 'express'
+import { TOTP } from 'otpauth'
 
-
-
-import { PrismaService } from '@/src/core/prisma/prisma.service';
-import { RedisService } from '@/src/core/redis/redis.service';
-import { LoginInput } from '@/src/modules/auth/session/inputs/login.input';
-import { VerificationService } from '@/src/modules/auth/verification/verification.service';
-import { getSessionMetadata } from '@/src/shared/utils/session-metadata.util';
-import { destroySession, saveSession } from '@/src/shared/utils/session.util';
-
-
-
-
+import { PrismaService } from '@/src/core/prisma/prisma.service'
+import { RedisService } from '@/src/core/redis/redis.service'
+import { LoginInput } from '@/src/modules/auth/session/inputs/login.input'
+import { VerificationService } from '@/src/modules/auth/verification/verification.service'
+import { getSessionMetadata } from '@/src/shared/utils/session-metadata.util'
+import { destroySession, saveSession } from '@/src/shared/utils/session.util'
 
 @Injectable()
 export class SessionService {

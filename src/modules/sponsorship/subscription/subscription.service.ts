@@ -10,7 +10,7 @@ export class SubscriptionService {
     public async findMySponsors(user: User) {
         return this.prismaService.sponsorshipSubscription.findMany({
             where: {
-                channelId: user.id,
+                channelId: user.id
             },
             orderBy: {
                 createdAt: 'desc'

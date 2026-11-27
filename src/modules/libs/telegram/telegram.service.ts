@@ -1,22 +1,14 @@
-import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { type SponsorshipPlan, TokenType, type User } from '@prisma/generated';
-import { Action, Command, Ctx, Start, Update } from 'nestjs-telegraf';
-import { Context, Telegraf } from 'telegraf';
+import { Injectable } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
+import { type SponsorshipPlan, TokenType, type User } from '@prisma/generated'
+import { Action, Command, Ctx, Start, Update } from 'nestjs-telegraf'
+import { Context, Telegraf } from 'telegraf'
 
+import { PrismaService } from '@/src/core/prisma/prisma.service'
+import { BUTTONS } from '@/src/modules/libs/telegram/telegram.buttons'
+import type { SessionMetadata } from '@/src/shared/types/session-metadata.types'
 
-
-import { PrismaService } from '@/src/core/prisma/prisma.service';
-import { BUTTONS } from '@/src/modules/libs/telegram/telegram.buttons';
-import type { SessionMetadata } from '@/src/shared/types/session-metadata.types';
-
-
-
-import { MESSAGES } from './telegram.messages';
-
-
-
-
+import { MESSAGES } from './telegram.messages'
 
 @Update()
 @Injectable()

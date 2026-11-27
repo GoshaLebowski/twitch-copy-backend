@@ -62,15 +62,15 @@ export class IngressService {
                 serverUrl: ingress.url,
                 streamKey: ingress.streamKey
             }
-        });
+        })
 
         if (result.count === 0) {
             throw new BadRequestException(
                 `Вы не можете создать ключ, это проект для теста`
-            );
+            )
         }
 
-        return true;
+        return true
     }
 
     private async resetIngresses(user: User) {

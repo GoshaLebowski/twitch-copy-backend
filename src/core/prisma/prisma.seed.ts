@@ -1,24 +1,14 @@
-import { BadRequestException, Logger } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
-import { hash } from 'argon2';
+import { BadRequestException, Logger } from '@nestjs/common'
+import { ConfigModule, ConfigService } from '@nestjs/config'
+import { hash } from 'argon2'
 
+import { DefaultArgs } from '@/prisma/generated/runtime/library'
 
+import { Prisma, PrismaClient } from '../../../prisma/generated'
 
-import { DefaultArgs } from '@/prisma/generated/runtime/library';
-
-
-
-import { Prisma, PrismaClient } from '../../../prisma/generated';
-
-
-
-import { CATEGORIES } from './data/categories.data';
-import { STREAMS } from './data/streams.data';
-import { USERNAMES } from './data/users.data';
-
-
-
-
+import { CATEGORIES } from './data/categories.data'
+import { STREAMS } from './data/streams.data'
+import { USERNAMES } from './data/users.data'
 
 const prisma = new PrismaClient({
     transactionOptions: {
@@ -59,7 +49,7 @@ async function createUserAndStream(
 
     const createdUser = await tx.user.create({
         data: {
-            email: `${username}@teastream.ru`,
+            email: `${username}@teststream.ru`,
             password: await hash(password),
             username,
             displayName: username,

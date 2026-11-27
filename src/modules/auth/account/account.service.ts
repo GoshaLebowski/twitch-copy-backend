@@ -1,20 +1,18 @@
-import { ConflictException, Injectable, UnauthorizedException } from '@nestjs/common';
-import type { User } from '@prisma/generated';
-import { hash, verify } from 'argon2';
+import {
+    ConflictException,
+    Injectable,
+    UnauthorizedException
+} from '@nestjs/common'
+import type { User } from '@prisma/generated'
+import { hash, verify } from 'argon2'
 
-
-
-import { PrismaService } from '@/src/core/prisma/prisma.service';
-import { ChangeEmailInput } from '@/src/modules/auth/account/inputs/change-email.input';
-import { ChangePasswordInput } from '@/src/modules/auth/account/inputs/change-password.input';
-import { CreateUserInput } from '@/src/modules/auth/account/inputs/create-user.input';
-import { VerificationService } from '@/src/modules/auth/verification/verification.service';
-import { NotificationService } from '@/src/modules/notification/notification.service';
+import { PrismaService } from '@/src/core/prisma/prisma.service'
+import { ChangeEmailInput } from '@/src/modules/auth/account/inputs/change-email.input'
+import { ChangePasswordInput } from '@/src/modules/auth/account/inputs/change-password.input'
+import { CreateUserInput } from '@/src/modules/auth/account/inputs/create-user.input'
+import { VerificationService } from '@/src/modules/auth/verification/verification.service'
 import { ChangeNotificationsSettingsInput } from '@/src/modules/notification/inputs/change-notifications-settings.input'
-
-
-
-
+import { NotificationService } from '@/src/modules/notification/notification.service'
 
 @Injectable()
 export class AccountService {
@@ -67,12 +65,16 @@ export class AccountService {
             }
         })
 
-        const inputChangeNotificationsSettings: ChangeNotificationsSettingsInput = {
-            siteNotifications: true,
-            telegramNotifications: false
-        }
+        const inputChangeNotificationsSettings: ChangeNotificationsSettingsInput =
+            {
+                siteNotifications: true,
+                telegramNotifications: false
+            }
 
-        await this.notificationService.changeSettings(user, inputChangeNotificationsSettings)
+        await this.notificationService.changeSettings(
+            user,
+            inputChangeNotificationsSettings
+        )
 
         await this.verificationService.sendVerificationToken(user)
 

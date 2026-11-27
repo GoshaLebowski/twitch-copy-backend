@@ -1,21 +1,15 @@
-import { MailerService } from '@nestjs-modules/mailer';
-import { Injectable } from '@nestjs/common';
-import { ConfigService } from '@nestjs/config';
-import { render } from '@react-email/components';
+import { MailerService } from '@nestjs-modules/mailer'
+import { Injectable } from '@nestjs/common'
+import { ConfigService } from '@nestjs/config'
+import { render } from '@react-email/components'
 
-
-
-import { AccountDeletionTemplate } from '@/src/modules/libs/mail/templates/account-deletion.template';
-import { DeactivateTemplate } from '@/src/modules/libs/mail/templates/deactivate.template';
-import { EnableTwoFactorTemplate } from '@/src/modules/libs/mail/templates/enable-two-factor.template';
-import { PasswordRecoveryTemplate } from '@/src/modules/libs/mail/templates/password-recovery.template';
+import { AccountDeletionTemplate } from '@/src/modules/libs/mail/templates/account-deletion.template'
+import { DeactivateTemplate } from '@/src/modules/libs/mail/templates/deactivate.template'
+import { EnableTwoFactorTemplate } from '@/src/modules/libs/mail/templates/enable-two-factor.template'
+import { PasswordRecoveryTemplate } from '@/src/modules/libs/mail/templates/password-recovery.template'
 import { VerificationTemplate } from '@/src/modules/libs/mail/templates/verification.template'
 import { VerifyChannelTemplate } from '@/src/modules/libs/mail/templates/verify-channel.template'
-import type { SessionMetadata } from '@/src/shared/types/session-metadata.types';
-
-
-
-
+import type { SessionMetadata } from '@/src/shared/types/session-metadata.types'
 
 @Injectable()
 export class MailService {
